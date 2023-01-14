@@ -1,20 +1,14 @@
 # frozen_string_literal: true
-
+require 'date'
 # BEGIN
-def get_same_parity(array)
-
-    if array.first.respond_to?('even?') then
-        if array.first.even? then
-            result = array.select {|el| el.even?}
-        else
-            result = array.reject {|el| el.even?}
-        end
-    else
-        result = array
+def count_by_years(users)
+    final_list = {}
+    year = ''
+    year_list = users.map {|user| user[:birthday][ 0, 4 ] }
+    year_list.each do |year|
+        final_list[year] = year_list.count(year) => year
+        puts year
     end
-
-    result
-
+    final_list
 end
-
 # END
