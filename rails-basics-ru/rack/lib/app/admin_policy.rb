@@ -6,7 +6,7 @@ class AdminPolicy
   end
 
   def call(env)
-    if env['REQUEST_PATH'].start_with?('/admin')
+    if path == '/admin'
       [403, {'Content-Type' => 'text/plain'}, []]
     else
       @app.call(env)
