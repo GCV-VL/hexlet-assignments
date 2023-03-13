@@ -6,7 +6,6 @@ class Signature
   end
 
   def call(env)
-    puts "Signature middleware called"
     status, headers, response = @app.call(env)
     response_body = response.join('')
     signature = generate_signature(response_body)
