@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'json'
 
@@ -24,8 +25,7 @@ class MyMiddleware
 end
 
 class App
-  def call(env)
-  end
+  def call(env); end
 end
 
 use MyMiddleware

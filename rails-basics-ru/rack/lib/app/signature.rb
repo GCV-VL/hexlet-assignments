@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'digest'
 
 class Signature
@@ -7,7 +9,7 @@ class Signature
 
   def call(env)
     status, headers, response = @app.call(env)
-    response_body = response.join('')
+    response_body = response.join
     signature = generate_signature(response_body)
     response_body += "\nSignature: #{signature}"
 

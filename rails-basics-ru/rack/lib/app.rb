@@ -13,7 +13,6 @@ module App
       builder.use Signature
       builder.use ExecutionTimer
       builder.run Router.new
-
     end
   end
 end

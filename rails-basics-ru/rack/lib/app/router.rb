@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Router
   def initialize
     @routes = {}
@@ -10,16 +12,17 @@ class Router
   def call(env)
     path = env['REQUEST_PATH']
 
-    if path == '/about'
+    case path
+    when '/about'
       response_code = 200
       response_text = 'About us'
-    elsif path == '/'
+    when '/'
       response_code = 200
       response_text = 'Hello World'
     else
       response_code = 404
       response_text = 'Page Not Found'
     end
-    [response_code, {'Content-Type' => 'text/plain'}, [response_text]]
+    [response_code, { 'Content-Type' => 'text/plain' }, [response_text]]
   end
 end
