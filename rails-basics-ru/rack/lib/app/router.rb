@@ -10,17 +10,13 @@ class Router
   def call(env)
     path = env['REQUEST_PATH']
 
-    if @routes.key?(path)
-      # Execute the handler for the requested route
-      handler = @routes[path]
+    if path == '/about'
       response_code = 200
-      response_text = handler.call
+      response_text = 'About us'
     elsif path == '/'
-      # Return "Hello World" for the root path
       response_code = 200
       response_text = 'Hello World'
     else
-      # Return 404 for all other routes
       response_code = 404
       response_text = 'Page Not Found'
     end

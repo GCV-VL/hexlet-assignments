@@ -1,15 +1,19 @@
-class ExecutionTimer
-    def initialize(app)
-      @app = app
-    end
+# frozen_string_literal: true
 
-    def call(env)
-      puts "ExecutionTimer middleware called"
-      start_time = Time.now
-      status, headers, body = @app.call(env)
-      end_time = Time.now
-      response_time = end_time - start_time
-      headers['X-Response-Time'] = "#{response_time}s"
-      [status, headers, body]
-    end
+class ExecutionTimer
+  def initialize(app)
+    @app = app
   end
+
+  def call(env)
+    start_time = Time.now
+    status, headers, response = @app.call(env)
+    end_time = Time.now
+    duration = (end_time - start_time)* 1_000
+
+    response_body = response.join('')
+    response_body += "\n\nElapsed time: #{duration.round(2)}s"
+
+    [status, headers, [response_body]]
+  end
+end
