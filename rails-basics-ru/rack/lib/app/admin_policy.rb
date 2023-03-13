@@ -6,14 +6,10 @@ class AdminPolicy
   end
 
   def call(env)
-    p 'AdminPolicy is used'
-    path = env['REQUESTED_PATH']
-    if path.start_with?('/admin')
-      response_code = 403
-      response_text = 'Admin page is not implemented yet'
-      return [response_code, {'Content-Type' => 'text/plain'}, [response_text]]
+    if env['REQUEST_PATH'].start_with?('/admin')
+      [403, {'Content-Type' => 'text/plain'}, []]
+    else
+      @app.call(env)
     end
-
-    @app.call(env)
   end
 end

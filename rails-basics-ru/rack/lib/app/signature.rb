@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'digest'
 
 class Signature
@@ -9,6 +7,7 @@ class Signature
 
   def call(env)
     puts "Signature middleware called"
+    status, headers, response = @app.call(env)
     response_body = response.join('')
     signature = generate_signature(response_body)
     response_body += "\nSignature: #{signature}"
@@ -22,5 +21,4 @@ class Signature
     # Use SHA-256 to generate a signature
     Digest::SHA256.hexdigest(data)
   end
-
 end

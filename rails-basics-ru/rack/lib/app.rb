@@ -10,9 +10,6 @@ module App
   def self.init
     Rack::Builder.new do |builder|
       builder.use AdminPolicy
-      # BEGIN
-
-      # END
       builder.use Signature
       builder.use ExecutionTimer
       builder.run Router.new
