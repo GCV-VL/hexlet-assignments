@@ -54,13 +54,7 @@ class Bus
     @wheels_radius = params[:wheels_radius]
   end
 
-  def color
-    @color
-  end
-
-  def color=(color)
-    @color = color
-  end
+  attr_accessor :color
 
   def print_string
     print "
@@ -75,9 +69,9 @@ end
 
 class Bus
   # Создание методов-геттеров
-  attr_reader :color, :doors_number, :type, :wheels_number, :wheels_radius
+  attr_accessor :color, :doors_number, :type, :wheels_number, :wheels_radius
+
   # Создание методов-сеттеров
-  attr_writer :color, :doors_number, :type, :wheels_number, :wheels_radius
 
   def initialize(params)
     @color = params[:color]
@@ -110,7 +104,7 @@ class Bus
   end
 end
 
-Bus.bus? #
+Bus.bus?
 
 ### Разграничение доступа к методам ###
 
@@ -287,7 +281,7 @@ module Colorful
   COLORS = {
     black: '#000000',
     red: '#FF0000',
-    white: '#FFFFFF',
+    white: '#FFFFFF'
   }
 
   def color_code(color)
@@ -306,7 +300,7 @@ class User
   # Модуль используется как mixin
   # Перезаписывает методы класса, если есть с таким же именем
   include Colorful
-  #...
+  # ...
 end
 
 class Bus
@@ -366,7 +360,7 @@ class Bus
   # extend расширяет класс
   extend Colorful
 
-  #...
+  # ...
 end
 
 Bus.colorized?
@@ -376,25 +370,23 @@ Bus.colorized?
 # Короткая запись - Books::HarryPotter.glasses
 module Books
   module HarryPotter
-    def glasses
-    end
+    def glasses; end
   end
 
   # Вызывается модуль Books::HarryPotter
-  HarryPotter::glasses
+  HarryPotter.glasses
   # Вызов метода из модуля HarryPotter (который находится глобально)
-  ::HarryPotter::magic
+  ::HarryPotter.magic
 end
 
 module HarryPotter
-  def magic
-  end
+  def magic; end
 end
 
 ### method_missing ###
 
-def method_missing(m, *args, &block)
-  #...
+def method_missing(m, *args, &)
+  # ...
 end
 
 # Стараемся использовать отдельный файл для каждого класса

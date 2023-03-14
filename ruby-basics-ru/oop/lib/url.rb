@@ -1,33 +1,33 @@
 # frozen_string_literal: true
 
-# BEGIN
-class URL
-    attr_reader :scheme, :host, :query_params
+require 'uri'
+require 'forwardable'
 
-    def initialize(url)
-        uri = URI(url)
-        @scheme = uri.scheme
-        @host = uri.host
-        @query_params = CGI.parse(uri.query)
-    end
+class Url
+  include Comparable
+  extend Forwardable
 
-    def scheme
-        @scheme
-    end
+  def_delegators :@uri, :scheme, :host, :port
 
-    def host
-        @host
-    end
+  def initialize(url)
+    @uri = URI(url)
+    query = @uri.query || ''
 
-    def query_params
-        @query_params
+    @options = query.split('&').each_with_object({}) do |params, acc|
+      key, value = params.split('=')
+      acc[key.to_sym] = value
     end
+  end
+
+  def query_params
+    @options
+  end
+
+  def query_param(key, default = nil)
+    @options.fetch(key, default)
+  end
+
+  def <=>(other)
+    [scheme, host, port, query_params] <=> [other.scheme, other.host, other.port, other.query_params]
+  end
 end
-
-# END
-
-# url = URL.new("https://www.example.com?param1=value1&param2=value2")
-# puts url.scheme # prints "https"
-# puts url.host # prints "www.example.com"
-# puts url.query_params # prints {"param1"=>["value1"], "param2"=>["value2"]}
-
