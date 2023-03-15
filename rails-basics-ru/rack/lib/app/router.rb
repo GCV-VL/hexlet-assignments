@@ -23,6 +23,12 @@ class Router
       response_code = 404
       response_text = 'Page Not Found'
     end
+    handle_request(env['REQUEST_METHOD'], env['PATH_INFO'])
     [response_code, { 'Content-Type' => 'text/plain' }, [response_text]]
+  end
+
+  def handle_request(method, path)
+    puts method
+    puts path
   end
 end
