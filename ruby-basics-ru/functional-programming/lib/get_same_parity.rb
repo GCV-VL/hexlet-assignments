@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # frozen_string_literal: true
 require 'date'
 # BEGIN
@@ -12,3 +13,11 @@ def count_by_years(users)
     final_list
 end
 # END
+=======
+def get_same_parity(numbers)
+    return [] if numbers.empty?
+
+    even = numbers.first.even?
+    numbers.filter { |number| number.even? == even }
+  end
+>>>>>>> master

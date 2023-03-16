@@ -58,3 +58,47 @@ end
 
 test_methods = StackTest.new({}).methods.select { |method| method.start_with? 'test_' }
 raise 'StackTest has not tests!' if test_methods.empty?
+<<<<<<< HEAD
+=======
+
+
+ #   require 'minitest/autorun'
+ #   require_relative '../lib/stack'
+#
+ #   class StackTest < Minitest::Test
+ #     def setup
+ #       @my_stack = Stack.new(['ruby', 'php'])
+ #     end
+#
+ #     def test_initialize
+ #       assert_equal 0, Stack.new.size
+ #     end
+#
+ #     def test_pop!
+ #       assert_equal 'java', @my_stack.push!('java').pop!
+ #       assert_equal ['ruby', 'php'], @my_stack.to_a
+ #     end
+#
+ #     def test_push!
+ #       assert_equal ['ruby', 'php', 'java'], @my_stack.push!('java').to_a
+ #     end
+#
+ #     def test_empty?
+ #       refute @my_stack.empty?
+ #       assert Stack.new.empty?
+ #     end
+#
+ #     def test_to_a
+ #       assert_equal ['ruby', 'php'], @my_stack.to_a
+ #     end
+#
+ #     def test_clear!
+ #       assert_equal [], @my_stack.clear!.to_a
+ #     end
+#
+ #     def test_size
+ #       assert_equal 2, @my_stack.size
+ #     end
+ #   end
+#
+>>>>>>> master

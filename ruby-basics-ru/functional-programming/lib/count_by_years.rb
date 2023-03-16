@@ -2,6 +2,7 @@
 require 'date'
 # BEGIN
 def count_by_years(users)
+<<<<<<< HEAD
     men = []
     key = ''
     a = ''
@@ -14,3 +15,16 @@ def count_by_years(users)
 
     result
   end
+=======
+    men = users.select { |user| user[:gender] == 'male' }
+    years = men.map { |man| man[:birthday][0..3] }
+
+    years.each_with_object(Hash.new(0)) do |year, acc|
+      acc[year] += 1
+    end
+
+    # Альтернативное решение
+    # years.tally
+  end
+# END
+>>>>>>> master
