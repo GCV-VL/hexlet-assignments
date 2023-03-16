@@ -9,9 +9,9 @@ class Signature
 
   def call(env)
     status, headers, response = @app.call(env)
-    response_body = response.join
+    response_body = response.first
     signature = generate_signature(response_body)
-    response_body += "\nSignature: #{signature}"
+    response_body += "\n #{signature}"
 
     [status, headers, [response_body]]
   end
