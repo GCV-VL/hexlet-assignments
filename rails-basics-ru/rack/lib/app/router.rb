@@ -15,13 +15,13 @@ class Router
     case path.path
     when '/about'
       response_code = 200
-      response_text = 'About us'
+      response_text = 'About page'
     when '/'
       response_code = 200
-      response_text = 'Hello World'
+      response_text = 'Hello, World!'
     else
       response_code = 404
-      response_text = 'Page Not Found'
+      response_text = '404 Not Found'
     end
     [response_code, { 'Content-Type' => 'text/plain' }, [response_text]]
   end
