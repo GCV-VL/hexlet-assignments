@@ -8,12 +8,17 @@ class Signature
   end
 
   def call(env)
-    # BEGIN
-    status, headers, body = @app.call env
+    status, headers, response = @app.call(env)
+    response_body = response.join
+    signature = generate_signature(response_body)
+    response_body += "\nSignature: #{signature}"
 
-    body.push("\n", Digest::SHA2.hexdigest(body.first))
+    [status, headers, [response_body]]
+  end
 
-    [status, headers, body]
-    # END
+  private
+
+  def generate_signature(data)
+    Digest::SHA256.hexdigest(data)
   end
 end

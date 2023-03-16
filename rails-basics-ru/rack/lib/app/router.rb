@@ -25,5 +25,4 @@ class Router
     end
     [response_code, { 'Content-Type' => 'text/plain' }, [response_text]]
   end
-
 end
