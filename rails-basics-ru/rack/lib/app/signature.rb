@@ -19,7 +19,6 @@ class Signature
   private
 
   def generate_signature(data)
-    # Use SHA-256 to generate a signature
-    Digest::SHA256.hexdigest(data)
+    Digest::SHA2.hexdigest(data)
   end
 end
