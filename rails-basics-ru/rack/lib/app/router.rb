@@ -12,7 +12,7 @@ class Router
   def call(env)
     path = Rack::Request.new(env)
 
-    case path
+    case path.path
     when '/about'
       response_code = 200
       response_text = 'About us'
