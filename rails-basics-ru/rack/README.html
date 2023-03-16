@@ -20,52 +20,44 @@
         <div class="marpit">' + 
 '<svg data-marpit-svg="" viewBox="0 0 1280 5000">' + 
 '<foreignObject width="1280" height="5000">' + 
-'<section id="1" data-marpit-fragments="5">
-<h1>Основы</h1>
-<p>Ruby — мощный скриптовый язык программирования, который создавался с целью сделать программирование максимально «человечным».</p>
-<p>Реазлизуйте в этом задании несколько функций. Тесты для них находятся в директории <em>lib/</em>.</p>
-<h2>Задачи</h2>
-<h3>lib/reverse.rb</h3>
-<p>Реализуйте функцию <code>reverse()</code>, которая принимает строку и переворачивает её задом наперёд. Задачу нужно решить без использования встроенных в язык методов.</p>
-<pre>' + 
-'<code class="language-ruby">reverse(<span class="hljs-string">&#x27;Hexlet&#x27;</span>)
-<span class="hljs-comment"># &quot;telxeH&quot;</span>
-</code>' + 
-'</pre>
-<h3>lib/fibonacci.rb</h3>
-<p>Напишите функцию <code>fibonacci()</code>, которая возвращает n-ый элемент последовательности Фибоначчи из положительных чисел. В случае если <code>n &lt; 0</code>, функция должна вернуть значение <code>nil</code>.</p>
-<pre>' + 
-'<code class="language-ruby">fibonacci(-<span class="hljs-number">1</span>) <span class="hljs-comment"># nil</span>
-fibonacci(<span class="hljs-number">0</span>) <span class="hljs-comment"># 0</span>
-fibonacci(<span class="hljs-number">1</span>) <span class="hljs-comment"># 1</span>
-fibonacci(<span class="hljs-number">10</span>) <span class="hljs-comment"># 55</span>
-</code>' + 
-'</pre>
-<h3>Подсказки</h3>
+'<section id="1" data-marpit-fragments="4">
+<h1>Rack</h1>
+<p>Rack обеспечивает минимальный интерфейс между веб-серверами, поддерживающими Ruby и Ruby-фреймворки. Практически все веб-фреймворке в мире Ruby обеспечивают интерфейс Rack. При написании веб-приложений не всегда требуется использовать Ruby On Rails. Иногда требуется что-то намного проще, легче или даже быстрее.</p>
+<p>Rack также поддерживает создание промежуточного слоя (middleware). По сути, они перехватывают запрос, что-то с ним делают и передают дальше. Это полезно для разноплановых задач, таких как логирование, аутентификация.</p>
+<p>В этом задании создадим миддлвары для небольшого веб-приложения.</p>
+<h2>Ссылки</h2>
 <ul>
 <li data-marpit-fragment="1">' + 
-'<a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">Числа Фибоначчи</a>' + 
+'<a href="https://en.wikipedia.org/wiki/Middleware">Middleware</a>' + 
+'</li>
+<li data-marpit-fragment="2">' + 
+'<a href="https://github.com/rack/rack">Rack</a>' + 
+'</li>
+<li data-marpit-fragment="3">' + 
+'<a href="https://github.com/rack/rack/blob/main/SPEC.rdoc#label-The+Body">Response Body</a>' + 
+'</li>
+<li data-marpit-fragment="4">' + 
+'<a href="https://ruby-doc.org/stdlib-2.4.0/libdoc/digest/rdoc/Digest/SHA2.html">Digest::SHA2</a>' + 
 '</li>
 </ul>
-<h3>lib/fizz_buzz.rb</h3>
-<p>Реализуйте функцию <code>fizz_buzz()</code>, которая возвращает строку с числами (через пробел) в диапазоне от <code>start</code> до <code>stop</code>. При этом:</p>
-<ul>
-<li data-marpit-fragment="2">Если число делится без остатка на <code>3</code>, то вместо него выводится слово <code>Fizz</code>' + 
-'</li>
-<li data-marpit-fragment="3">Если число делится без остатка на <code>5</code>, то вместо него выводится слово <code>Buzz</code>' + 
-'</li>
-<li data-marpit-fragment="4">Если число делится без остатка и на <code>3</code>, и на <code>5</code>, то вместо числа выводится слово <code>FizzBuzz</code>' + 
-'</li>
-<li data-marpit-fragment="5">В остальных случаях выводится само число</li>
-</ul>
-<p>Функция принимает два параметра (<code>start</code> и <code>stop</code>), определяющих начало и конец диапазона (включительно). Если диапазон пуст (в случае, когда <code>start &gt; stop</code>), то функция просто ничего не возвращает.</p>
+<h2>Задачи</h2>
+<p>Реализуйте миддлвары для приложения.</p>
+<h3>lib/app/router.rb</h3>
+<p>Реализуйте класс Router, который содержит обработчики для 2 маршрутов: <code>/</code>, <code>/about</code>. При выполнении запросов по данным путям, возвращается строка и успешный код ответа. Для всех прочих маршрутов возвращается 404 код ответа и текст.</p>
+<h3>lib/app/admin_policy.rb</h3>
+<p>Реализуйте метод миддлвара. Который возвращает <em>403</em> статус ответа для всех запросов, путь которых начинается с <em>/admin</em>. Возвращать тело ответа при этом не нужно.</p>
+<h3>lib/app/signature.rb</h3>
+<p>Реализуйте метод миддлвара который добавляет в тело ответа хеш, зашифрованным по алгоритму семейства <em>SHA-256</em>' + 
+'</p>
 <pre>' + 
-'<code class="language-ruby">puts fizz_buzz(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)
-<span class="hljs-comment"># =&gt; &#x27;1 2 Fizz 4 Buzz&#x27;</span>
-puts fizz_buzz(<span class="hljs-number">11</span>, <span class="hljs-number">20</span>)
-<span class="hljs-comment"># =&gt; &#x27;11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz&#x27;</span>
+'<code class="language-bash">curl http://localhost:3000
+<span class="hljs-comment"># Hello, World!</span>
+<span class="hljs-comment"># dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f</span>
 </code>' + 
 '</pre>
+<h2>Дополнительное задание</h2>
+<h3>lib/app/execution_timer.rb</h3>
+<p>Реализуйте и подключите на страницу миддлвар, который выводит информацию о затраченном времени выполнения сайта в микросекундах. При этом хеш контента не должен измениться.</p>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var t,s,o,r,a;this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject>' + 
 '<span ${n}>' + 
