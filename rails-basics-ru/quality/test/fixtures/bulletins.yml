@@ -1,0 +1,9 @@
+bulletin1:
+  id: 25
+  title: title_1
+  body: body_1
+
+bulletin2:
+  id: 26
+  title: title_2
+  body: body_2

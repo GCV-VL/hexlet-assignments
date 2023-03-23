@@ -6,3 +6,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+5.times do |index|
+    Bulletin.create(title: "Title ##{index+1}", body: "The description of bulletin ##{index+1}")
+end
