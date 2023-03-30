@@ -9,10 +9,46 @@ class TasksController < ApplicationController
 
     def create
         @task = Task.new(task_params)
+
+        if @task.save
+            redirect_to task_url(@task)
+            flash[:success] = 'done'
+        else
+            flash[:fail] = 'not saved'
+            render :new
+        end
     end
 
     def show
         @task = Task.find(params[:id])
+    end
+
+    def edit
+        @task = Task.find(params[:id])
+
+
+    end
+
+    def update
+        @task = Task.new(task_params)
+
+        if @task.update(task_params)
+            redirect_to task_url(@task)
+            flash[:success] = 'done'
+        else
+            flash[:fail] = 'not saved'
+            render :edit
+        end
+    end
+
+    def destroy
+        @task = Task.find(params[:id])
+
+        if @task.destroy
+            redirect_to root_path
+        else
+            redirect_to task_url(@task)
+        end
     end
 
     private

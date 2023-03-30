@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :tasks, only: [:show, :new, :create]
+  resources :tasks, except: [:index]
   root 'tasks#index'
   # BEGIN
 
