@@ -1,0 +1,15 @@
+h1
+  = @task.name
+p
+  = @task.description
+small
+  =  "#{@task.created_at}   #{@task.name}"
+hr
+p
+  = link_to 'Edit', edit_task_path(@task)
+p
+  = link_to 'Back', root_path
+p
+  = link_to 'Delete', task_path(@task), method: :delete, data: {confirm:  'are you sure?'}
+hr
+|  edit_task_path
