@@ -1,0 +1,54 @@
+<h1>Edit task</h1>
+
+<%= form_with model: @task do |form| %>
+   <div>
+       <%= form.label :completed %><br>
+       <%= form.check_box :completed %>
+   </div>
+
+   <div>
+       <%= form.label :creator %><br>
+       <%= form.text_field :creator %>
+   </div>
+
+   <div>
+       <%= form.label :description %><br>
+       <%= form.text_field :description %>
+   </div>
+
+   <div>
+       <%= form.label :name %><br>
+       <%= form.text_field :name %>
+   </div>
+
+      <div>
+       <%= form.label :performer %><br>
+       <%= form.text_field :performer %>
+   </div>
+
+   <div>
+       <%= form.label :status %><br>
+       <%= form.text_field :status %>
+   </div>
+
+   <div>
+       <%= form.submit %><br>
+
+   </div>
+
+<% end %>
+
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id          :integer          not null, primary key
+#  completed   :boolean
+#  creator     :string
+#  description :text
+#  name        :string
+#  performer   :string
+#  status      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
