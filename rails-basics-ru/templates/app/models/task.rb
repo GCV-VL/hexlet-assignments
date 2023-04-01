@@ -13,7 +13,7 @@
 #  updated_at  :datetime         not null
 #
 class Task < ApplicationRecord
-    validates :name, :status, :creator, :completed, presence: true
+    validates :name, :status, :creator, presence: true
     #validates :legacy_code, format: { with: /\A[a-zA-Z]+\z/,
     #message: "only allows letters" }
 end
