@@ -8,12 +8,14 @@ class TasksController < ApplicationController
     end
 
     def create
-        @task = Task.new task_params
+        @task = Task.new(task_params)
 
         if @task.save
-          redirect_to @task, notice: 'Task was successfully created.'
+          flash[:success] = 'A new task has been created'
+          redirect_to task_path(@task)
         else
-          render :new, status: :unprocessable_entity
+          flash[:failure] = 'Something went wrong :('
+          render :new
         end
     end
 
