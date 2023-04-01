@@ -11,11 +11,11 @@ class TasksController < ApplicationController
         @task = Task.new(task_params)
 
         if @task.save
-          flash[:success] = 'A new task has been created'
-          redirect_to task_path(@task)
+            redirect_to task_url(@task)
+            flash[:success] = 'done'
         else
-          flash[:failure] = 'Something went wrong :('
-          render :new
+            flash[:fail] = 'not saved'
+            render :new
         end
     end
 
