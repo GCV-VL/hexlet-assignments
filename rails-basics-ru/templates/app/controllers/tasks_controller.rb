@@ -8,16 +8,16 @@ class TasksController < ApplicationController
     end
 
     def create
-        @task = Task.new(task_params)
+        @task = Task.new task_params
 
         if @task.save
-            redirect_to task_url(@task)
-            flash[:success] = 'done'
+          redirect_to @task, notice: 'Task was successfully created.'
         else
-            flash[:fail] = 'not saved'
-            render :new
+          render :new, status: :unprocessable_entity
         end
     end
+
+
 
     def show
         @task = Task.find(params[:id])
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     end
 
     def update
-        @task = Task.new(task_params)
+        @task = Task.find params[:id]
 
         if @task.update(task_params)
             redirect_to task_url(@task)
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
         @task = Task.find(params[:id])
 
         if @task.destroy
-            redirect_to root_path
+            redirect_to tasks_url
         else
             redirect_to task_url(@task)
         end
