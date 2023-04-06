@@ -8,12 +8,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(task_params)
+    @post = Post.new(post_params)
 
     if @post.save
       redirect_to post_url(@post)
     else
       render :new
+    end
   end
 
   def show
@@ -25,23 +26,33 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find params[:id]
+    @post = Post.find(params[:id])
 
-    if @post.update(post_params)
-      redirect_to post_url(@post)
-    else
-      render :edit
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
-
   end
 
   def destroy
     @post = Post.find(params[:id])
 
     if @post.destroy
-        redirect_to post_url
+        redirect_to posts_url
     else
       redirect_to post_url(@post)
     end
+  end
+
+
+
+  private
+  def post_params
+    params.require(:post).permit(:title, :body, :summary, :published)
   end
 end
