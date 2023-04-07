@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: MyString 1
   description: MyText
   user: one
   status: one
 
 two:
-  name: MyString
+  name: MyString 2
   description: MyText
   user: two
   status: two
