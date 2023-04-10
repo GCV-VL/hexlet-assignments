@@ -6,3 +6,5 @@ node_modules/
 tmp/
 !.keep
 *.log
+
+/config/master.key
